@@ -94,6 +94,34 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Actions"",
+            ""id"": ""fe305fac-0041-4a50-9555-f494f4bfe4f8"",
+            ""actions"": [
+                {
+                    ""name"": ""TakeObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3a41014-97eb-4c38-ab63-2385a083f341"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""531626e4-199f-487c-9758-bc43f10517f2"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakeObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -101,6 +129,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Walk = m_Movement.FindAction("Walk", throwIfNotFound: true);
+        // Actions
+        m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
+        m_Actions_TakeObject = m_Actions.FindAction("TakeObject", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,8 +235,58 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // Actions
+    private readonly InputActionMap m_Actions;
+    private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
+    private readonly InputAction m_Actions_TakeObject;
+    public struct ActionsActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public ActionsActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @TakeObject => m_Wrapper.m_Actions_TakeObject;
+        public InputActionMap Get() { return m_Wrapper.m_Actions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IActionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ActionsActionsCallbackInterfaces.Add(instance);
+            @TakeObject.started += instance.OnTakeObject;
+            @TakeObject.performed += instance.OnTakeObject;
+            @TakeObject.canceled += instance.OnTakeObject;
+        }
+
+        private void UnregisterCallbacks(IActionsActions instance)
+        {
+            @TakeObject.started -= instance.OnTakeObject;
+            @TakeObject.performed -= instance.OnTakeObject;
+            @TakeObject.canceled -= instance.OnTakeObject;
+        }
+
+        public void RemoveCallbacks(IActionsActions instance)
+        {
+            if (m_Wrapper.m_ActionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IActionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ActionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ActionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ActionsActions @Actions => new ActionsActions(this);
     public interface IMovementActions
     {
         void OnWalk(InputAction.CallbackContext context);
+    }
+    public interface IActionsActions
+    {
+        void OnTakeObject(InputAction.CallbackContext context);
     }
 }

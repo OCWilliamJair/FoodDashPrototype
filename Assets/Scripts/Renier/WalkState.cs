@@ -21,7 +21,9 @@ public class WalkState : MonoBehaviour
         if(_currentDirection.magnitude >= 0.1 && rg.velocity.magnitude <= maxSpeed)
         {
             rg.AddForce(_currentDirection * _speed, ForceMode.Acceleration);
-        }else{
+        }
+        else
+        {
             rg.velocity = Vector3.Lerp(rg.velocity,new Vector3(0,rg.velocity.y,0),friction *Time.deltaTime);
         }
     }

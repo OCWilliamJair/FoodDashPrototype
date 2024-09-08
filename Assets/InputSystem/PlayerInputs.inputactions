@@ -72,6 +72,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Actions",
+            "id": "fe305fac-0041-4a50-9555-f494f4bfe4f8",
+            "actions": [
+                {
+                    "name": "TakeObject",
+                    "type": "Button",
+                    "id": "d3a41014-97eb-4c38-ab63-2385a083f341",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "531626e4-199f-487c-9758-bc43f10517f2",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakeObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
