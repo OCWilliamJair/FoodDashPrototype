@@ -8,6 +8,10 @@ public class InputManager : MonoBehaviour
     public bool IsJumping { get; private set;}
 
     public bool IsTakenObject { get; private set;}
+
+    public bool IsDropObject { get; private set;}
+
+    public bool IsThrowObject { get; private set;}
     private void Awake() {
         _inputs = new PlayerInputs();
         _inputs.Movement.Walk.started += OnMovement;
@@ -16,6 +20,12 @@ public class InputManager : MonoBehaviour
 
         _inputs.Actions.TakeObject.started += OnTake;
         _inputs.Actions.TakeObject.canceled += OnTake;
+
+        _inputs.Actions.DropObject.started += OnDrop;
+        _inputs.Actions.DropObject.canceled += OnDrop;
+
+        _inputs.Actions.ThrowObject.started += OnThrow;
+        _inputs.Actions.ThrowObject.canceled += OnThrow;
 
         _inputs.Movement.Walk.started += OnJump;
         _inputs.Movement.Walk.canceled += OnJump;
@@ -32,7 +42,16 @@ public class InputManager : MonoBehaviour
     void OnTake(InputAction.CallbackContext context)
     {
         IsTakenObject = context.ReadValueAsButton();
-        Debug.Log("presionando boton F" + IsTakenObject);
+    }
+
+    void OnDrop(InputAction.CallbackContext context)
+    {
+        IsDropObject = context.ReadValueAsButton();
+    }
+
+    void OnThrow(InputAction.CallbackContext context)
+    {
+        IsThrowObject = context.ReadValueAsButton();
     }
     private void OnEnable() {
         _inputs.Movement.Enable();

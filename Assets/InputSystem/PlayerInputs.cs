@@ -107,6 +107,24 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DropObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""e54244fa-bd41-4a55-8db2-762942d659d9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5a3c1e8-b846-4144-9b15-d9d31e388f12"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -118,6 +136,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""TakeObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16cc1d56-98e7-4602-ae47-d4a494f251e0"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09262a9f-804d-4ee5-9d16-48979f168f35"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowObject"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -132,6 +172,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_TakeObject = m_Actions.FindAction("TakeObject", throwIfNotFound: true);
+        m_Actions_DropObject = m_Actions.FindAction("DropObject", throwIfNotFound: true);
+        m_Actions_ThrowObject = m_Actions.FindAction("ThrowObject", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -240,11 +282,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Actions;
     private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
     private readonly InputAction m_Actions_TakeObject;
+    private readonly InputAction m_Actions_DropObject;
+    private readonly InputAction m_Actions_ThrowObject;
     public struct ActionsActions
     {
         private @PlayerInputs m_Wrapper;
         public ActionsActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @TakeObject => m_Wrapper.m_Actions_TakeObject;
+        public InputAction @DropObject => m_Wrapper.m_Actions_DropObject;
+        public InputAction @ThrowObject => m_Wrapper.m_Actions_ThrowObject;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -257,6 +303,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @TakeObject.started += instance.OnTakeObject;
             @TakeObject.performed += instance.OnTakeObject;
             @TakeObject.canceled += instance.OnTakeObject;
+            @DropObject.started += instance.OnDropObject;
+            @DropObject.performed += instance.OnDropObject;
+            @DropObject.canceled += instance.OnDropObject;
+            @ThrowObject.started += instance.OnThrowObject;
+            @ThrowObject.performed += instance.OnThrowObject;
+            @ThrowObject.canceled += instance.OnThrowObject;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -264,6 +316,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @TakeObject.started -= instance.OnTakeObject;
             @TakeObject.performed -= instance.OnTakeObject;
             @TakeObject.canceled -= instance.OnTakeObject;
+            @DropObject.started -= instance.OnDropObject;
+            @DropObject.performed -= instance.OnDropObject;
+            @DropObject.canceled -= instance.OnDropObject;
+            @ThrowObject.started -= instance.OnThrowObject;
+            @ThrowObject.performed -= instance.OnThrowObject;
+            @ThrowObject.canceled -= instance.OnThrowObject;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -288,5 +346,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     public interface IActionsActions
     {
         void OnTakeObject(InputAction.CallbackContext context);
+        void OnDropObject(InputAction.CallbackContext context);
+        void OnThrowObject(InputAction.CallbackContext context);
     }
 }

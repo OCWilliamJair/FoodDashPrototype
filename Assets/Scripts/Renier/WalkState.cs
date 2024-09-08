@@ -12,6 +12,7 @@ public class WalkState : MonoBehaviour
     [SerializeField] float friction = 15;
     [SerializeField] float maxSpeed = 15;
     private void Start() {
+
         rg = GetComponent<Rigidbody>();
         rg.constraints = RigidbodyConstraints.FreezeRotation;
         _inputs = GetComponent<InputManager>();
@@ -20,7 +21,7 @@ public class WalkState : MonoBehaviour
         _currentDirection = new Vector3(_inputs.MovementDirection.x,0,_inputs.MovementDirection.y);
         if(_currentDirection.magnitude >= 0.1 && rg.velocity.magnitude <= maxSpeed)
         {
-            rg.AddForce(_currentDirection * _speed, ForceMode.Acceleration);
+            rg.AddForce(_currentDirection * PlayerPropiertes._currentSpeed, ForceMode.Acceleration);
         }
         else
         {
