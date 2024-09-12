@@ -1,16 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class RotateTowardsMoveDirection : MonoBehaviour
 {
-    Vector3 previousPosition = Vector3.zero;
-    private float _maxRadiansDelta = 1;
-    private float _rotationSpeed = 50;
-    private void Update() {
-        Vector3 currentDirection = transform.position - previousPosition;
-        Vector3 targetDirection = Vector3.RotateTowards(transform.forward, currentDirection, _maxRadiansDelta, Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetDirection), Time.deltaTime * _rotationSpeed);
-        previousPosition = transform.position;
+    [SerializeField] private float _rotationSpeed = 50f; // Velocidad de rotación en grados por segundo
+    private Vector3 _previousPosition;
+
+    private void Start()
+    {
+        // Inicializa _previousPosition al valor actual de la posición
+        _previousPosition = transform.position;
+    }
+
+    private void Update()
+    {
+        if(transform.position != _previousPosition)
+        {
+            Vector3 currentDirection = transform.position - _previousPosition;
+
+            // Evita rotar si no hay movimiento
+            if (currentDirection.magnitude > Mathf.Epsilon)
+            {
+                currentDirection.Normalize();
+                Quaternion targetRotation = Quaternion.LookRotation(currentDirection);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+            }
+        }
+
+        // Actualiza _previousPosition
+        _previousPosition = transform.position;
     }
 }
