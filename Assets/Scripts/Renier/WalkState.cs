@@ -21,7 +21,7 @@ public class WalkState : MonoBehaviour
         _currentDirection = new Vector3(_inputs.MovementDirection.x,0,_inputs.MovementDirection.y);
         if(_currentDirection.magnitude >= 0.1 && rg.velocity.magnitude <= maxSpeed)
         {
-            rg.AddForce(_currentDirection * PlayerPropiertes._currentSpeed, ForceMode.Acceleration);
+            rg.AddForce(_currentDirection * PlayerPropiertes._currentSpeed, ForceMode.Force);
         }
         else
         {

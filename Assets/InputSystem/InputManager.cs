@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour
         _inputs.Actions.DropObject.canceled += OnDrop;
 
         _inputs.Actions.ThrowObject.started += OnThrow;
+        _inputs.Actions.ThrowObject.performed += OnThrow;
         _inputs.Actions.ThrowObject.canceled += OnThrow;
 
         _inputs.Movement.Walk.started += OnJump;
@@ -53,6 +54,7 @@ public class InputManager : MonoBehaviour
     {
         IsThrowObject = context.ReadValueAsButton();
     }
+
     private void OnEnable() {
         _inputs.Movement.Enable();
         _inputs.Actions.Enable();

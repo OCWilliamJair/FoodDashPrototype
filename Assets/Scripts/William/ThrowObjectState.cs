@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class ThrowObjectState : MonoBehaviour
         {
             ThrowObject();
         }
+
     }
 
     private void Awake()
@@ -37,7 +39,7 @@ public class ThrowObjectState : MonoBehaviour
             obj.transform.parent = null;
 
             Vector3 throwDirection = (transform.forward + Vector3.up * Mathf.Tan(throwAngle * Mathf.Deg2Rad)).normalized;
-            rb.AddForce(throwDirection * throwForce, ForceMode.VelocityChange);
+            rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
         }
         if (_take != null)
         {

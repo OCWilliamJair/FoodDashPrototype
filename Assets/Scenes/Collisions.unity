@@ -970,7 +970,6 @@ GameObject:
   - component: {fileID: 441532307}
   - component: {fileID: 441532306}
   - component: {fileID: 441532305}
-  - component: {fileID: 441532304}
   - component: {fileID: 441532303}
   m_Layer: 0
   m_Name: Supply (2)
@@ -993,19 +992,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedDecrease: 0
   _isTakeable: 1
---- !u!114 &441532304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441532302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 637e507e9a2fe954eab4c52f51d9d58f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentTypeObject: 1
 --- !u!54 &441532305
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1237,7 +1223,6 @@ GameObject:
   - component: {fileID: 537116441}
   - component: {fileID: 537116440}
   - component: {fileID: 537116439}
-  - component: {fileID: 537116438}
   - component: {fileID: 537116437}
   m_Layer: 0
   m_Name: Supply (4)
@@ -1260,19 +1245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedDecrease: 0
   _isTakeable: 1
---- !u!114 &537116438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537116436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 637e507e9a2fe954eab4c52f51d9d58f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentTypeObject: 1
 --- !u!54 &537116439
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1504,7 +1476,6 @@ GameObject:
   - component: {fileID: 595043880}
   - component: {fileID: 595043879}
   - component: {fileID: 595043878}
-  - component: {fileID: 595043884}
   - component: {fileID: 595043883}
   m_Layer: 0
   m_Name: Supply
@@ -1640,19 +1611,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedDecrease: 10
   _isTakeable: 1
---- !u!114 &595043884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595043877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 637e507e9a2fe954eab4c52f51d9d58f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentTypeObject: 1
 --- !u!1 &674753406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,7 +1803,7 @@ Transform:
   m_GameObject: {fileID: 732794200}
   serializedVersion: 2
   m_LocalRotation: {x: 0.31619227, y: -0, z: -0, w: 0.9486951}
-  m_LocalPosition: {x: -0.1, y: 3, z: -3.1}
+  m_LocalPosition: {x: -0.1, y: 5.68, z: -5.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2056,7 +2014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _areaToTakeObject: {fileID: 853123803}
-  _timeToNextTake: 0
+  _timeToNextTake: 0.2
 --- !u!114 &781584759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2110,7 +2068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
-  friction: 5
+  friction: 10
   maxSpeed: 15
 --- !u!114 &781584764
 MonoBehaviour:
@@ -2125,7 +2083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _positionObjects: {fileID: 2071201682}
-  MAX_PICKUP_OBJECT: 3
+  MAX_PICKUP_OBJECT: 5
 --- !u!114 &781584765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3170,7 +3128,6 @@ GameObject:
   - component: {fileID: 997521087}
   - component: {fileID: 997521086}
   - component: {fileID: 997521085}
-  - component: {fileID: 997521084}
   - component: {fileID: 997521083}
   m_Layer: 0
   m_Name: Supply (1)
@@ -3193,19 +3150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedDecrease: 50
   _isTakeable: 1
---- !u!114 &997521084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997521082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 637e507e9a2fe954eab4c52f51d9d58f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentTypeObject: 1
 --- !u!54 &997521085
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3332,7 +3276,6 @@ GameObject:
   - component: {fileID: 1050156948}
   - component: {fileID: 1050156947}
   - component: {fileID: 1050156946}
-  - component: {fileID: 1050156945}
   - component: {fileID: 1050156944}
   m_Layer: 0
   m_Name: Supply (3)
@@ -3355,19 +3298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedDecrease: 30
   _isTakeable: 1
---- !u!114 &1050156945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1050156943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 637e507e9a2fe954eab4c52f51d9d58f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentTypeObject: 1
 --- !u!54 &1050156946
 Rigidbody:
   m_ObjectHideFlags: 0
