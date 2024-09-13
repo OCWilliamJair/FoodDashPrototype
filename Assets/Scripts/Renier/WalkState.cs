@@ -38,17 +38,15 @@ public class WalkState : MonoBehaviour
     //Debería retornar la dirreción en World Space en la que el jugador se debe mover relativo a la camara NO ESTA LISTO
     Vector3 CameraRelativeDirection()
     {
-
-        Vector3 directionToMove = _currentDirection;
         
-        Vector3 forward = transform.InverseTransformVector(Camera.main.transform.forward);
-        Vector3 right = transform.InverseTransformVector(Camera.main.transform.right);
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
         forward.y = 0;
         right.y = 0;
         forward.Normalize();
         right.Normalize();
 
-        directionToMove = (forward * _inputs.MovementDirection.y) + (right * _inputs.MovementDirection.x);
+        Vector3 directionToMove = (forward * _inputs.MovementDirection.y) + (right * _inputs.MovementDirection.x);
         
         return directionToMove;
     }
