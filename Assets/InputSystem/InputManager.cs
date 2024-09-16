@@ -28,8 +28,8 @@ public class InputManager : MonoBehaviour
         _inputs.Actions.ThrowObject.started += OnThrow;
         _inputs.Actions.ThrowObject.canceled += OnThrow;
 
-        _inputs.Movement.Walk.started += OnJump;
-        _inputs.Movement.Walk.canceled += OnJump;
+        _inputs.Movement.Jump.started += OnJump;
+        _inputs.Movement.Jump.canceled += OnJump;
     }
     void OnMovement(InputAction.CallbackContext context)
     {
@@ -38,6 +38,7 @@ public class InputManager : MonoBehaviour
     void OnJump(InputAction.CallbackContext context)
     {
         IsJumping = context.ReadValueAsButton();
+        Debug.Log("Jump pressed" + IsJumping);
     }
 
     void OnTake(InputAction.CallbackContext context)
@@ -61,6 +62,6 @@ public class InputManager : MonoBehaviour
     }
     private void OnDisable() {
         _inputs.Movement.Disable();
-        _inputs.Actions.Disable();
+        _inputs.Actions.Disable();      
     }
 }
