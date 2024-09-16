@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     public bool IsDropObject { get; private set;}
 
     public bool IsThrowObject { get; private set;}
+
     private void Awake() {
         _inputs = new PlayerInputs();
         _inputs.Movement.Walk.started += OnMovement;
@@ -23,9 +24,8 @@ public class InputManager : MonoBehaviour
 
         _inputs.Actions.DropObject.started += OnDrop;
         _inputs.Actions.DropObject.canceled += OnDrop;
-
+       
         _inputs.Actions.ThrowObject.started += OnThrow;
-        _inputs.Actions.ThrowObject.performed += OnThrow;
         _inputs.Actions.ThrowObject.canceled += OnThrow;
 
         _inputs.Movement.Walk.started += OnJump;

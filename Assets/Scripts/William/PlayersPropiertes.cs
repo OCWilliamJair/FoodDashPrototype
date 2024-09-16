@@ -11,6 +11,7 @@ public class PlayersPropiertes : ScriptableObject
     public static float _currentSpeed;
     [SerializeField] public float friction = 15;
     [SerializeField] public float maxSpeed = 15;
+    [SerializeField] public float _throwForce = 20;
 
     [SerializeField] public Vector3 _positionObjects;
     public int MAX_PICKUP_OBJECT = 3;
