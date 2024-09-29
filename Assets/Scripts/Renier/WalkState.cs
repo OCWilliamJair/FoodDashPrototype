@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(InputManager))]
@@ -16,6 +14,7 @@ public class WalkState : MonoBehaviour
     [SerializeField] float _rotationSpeed = 10;
     GroundCheck groundCheck;
     private void Start() {
+
         rg = GetComponent<Rigidbody>();
         rg.constraints = RigidbodyConstraints.FreezeRotation;
         _inputs = GetComponent<InputManager>();

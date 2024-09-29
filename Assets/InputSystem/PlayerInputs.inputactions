@@ -105,6 +105,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DropObject",
+                    "type": "Button",
+                    "id": "e54244fa-bd41-4a55-8db2-762942d659d9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ThrowObject",
+                    "type": "Button",
+                    "id": "d5a3c1e8-b846-4144-9b15-d9d31e388f12",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -116,6 +134,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "TakeObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16cc1d56-98e7-4602-ae47-d4a494f251e0",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09262a9f-804d-4ee5-9d16-48979f168f35",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThrowObject",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
