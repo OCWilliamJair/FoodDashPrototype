@@ -190,6 +190,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Walk = m_Movement.FindAction("Walk", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
+        // Actions
+        m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
+        m_Actions_TakeObject = m_Actions.FindAction("TakeObject", throwIfNotFound: true);
+        m_Actions_DropObject = m_Actions.FindAction("DropObject", throwIfNotFound: true);
+        m_Actions_ThrowObject = m_Actions.FindAction("ThrowObject", throwIfNotFound: true);
     }
 
     public void Dispose()
