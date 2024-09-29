@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour
 {
     PlayerInputs _inputs;
     public Vector2 MovementDirection{get; private set;}
-    public bool IsJumping { get; private set;}
+    public bool IsJumpPressed { get; private set;}
     private void Awake() {
         _inputs = new PlayerInputs();
         _inputs.Movement.Walk.started += OnMovement;
@@ -21,8 +21,7 @@ public class InputManager : MonoBehaviour
     }
     void OnJump(InputAction.CallbackContext context)
     {
-        IsJumping = context.ReadValueAsButton();
-        Debug.Log("Jump pressed" + IsJumping);
+        IsJumpPressed = context.ReadValueAsButton();
     }
     private void OnEnable() {
         _inputs.Movement.Enable();

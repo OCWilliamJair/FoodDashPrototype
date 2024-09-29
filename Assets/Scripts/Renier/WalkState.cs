@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor.Callbacks;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(InputManager))]
@@ -7,17 +8,18 @@ using UnityEngine;
 [RequireComponent(typeof(GroundCheck))]
 public class WalkState : MonoBehaviour
 {
-    Rigidbody rg;
+    Rigidbody rb;
     InputManager _inputs;
     Vector3 _currentDirection;
     [SerializeField] float _speed = 10;
-    [SerializeField] float friction = 15;
     [SerializeField] float maxSpeed = 15;
     [SerializeField] float _rotationSpeed = 10;
     GroundCheck groundCheck;
+    [SerializeField] float _velocityToWalkAgain = 0.5f;
+
     private void Start() {
-        rg = GetComponent<Rigidbody>();
-        rg.constraints = RigidbodyConstraints.FreezeRotation;
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
         _inputs = GetComponent<InputManager>();
         groundCheck = GetComponent<GroundCheck>();
     }
@@ -28,14 +30,11 @@ public class WalkState : MonoBehaviour
     void Move()
     {
         _currentDirection = new Vector3(_inputs.MovementDirection.x,0,_inputs.MovementDirection.y);
-        if(_currentDirection.magnitude >= 0.1 && rg.velocity.magnitude <= maxSpeed && groundCheck.IsGrounded)
+        if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= maxSpeed && groundCheck.IsGrounded)
         {
-            rg.AddForce( CameraRelativeDirection() * _speed, ForceMode.Acceleration);
-        }else{
-            rg.velocity = Vector3.Lerp(rg.velocity,new Vector3(0,rg.velocity.y,0), Time.deltaTime);
+            rb.AddForce( CameraRelativeDirection() * _speed, ForceMode.Force);
         }
     }
-    //Debería retornar la dirreción en World Space en la que el jugador se debe mover relativo a la camara NO ESTA LISTO
     Vector3 CameraRelativeDirection()
     {
         
@@ -54,9 +53,9 @@ public class WalkState : MonoBehaviour
     {
         if (_inputs.MovementDirection.magnitude > 0.1)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(CameraRelativeDirection());
+            Quaternion tarbetRotation = Quaternion.LookRotation(CameraRelativeDirection());
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, tarbetRotation, Time.deltaTime * _rotationSpeed);
         }
     }
 }
