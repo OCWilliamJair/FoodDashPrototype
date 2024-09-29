@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))] 
 public class CustomGravity : MonoBehaviour
 {
-    [Range(0.1f, 1 )] float _gravityScale = 1f;
-    private float _gravity = -9.81f;
+    [SerializeField] [Range(0.1f, 5 )] float _gravityScale = 1f;
+    private float _gravity = 9.81f;
     public float GravityScale { get { return _gravityScale; } set { _gravityScale = value; } }
     Vector3 _currentGravity = Vector3.zero;
     public float Gravity {get { return _gravity;}set { _gravity = value; }}
@@ -19,7 +19,7 @@ public class CustomGravity : MonoBehaviour
 
     }
     private void FixedUpdate() {
-        _currentGravity = _gravity * _gravityScale * Vector3.up;
-        rb.AddForce(_currentGravity, ForceMode.Acceleration);
+        _currentGravity = _gravity * _gravityScale * Vector3.down;
+        rb.AddForce(_currentGravity, ForceMode.Force);
     }
 }

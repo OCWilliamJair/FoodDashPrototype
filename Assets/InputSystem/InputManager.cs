@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
 
     public bool IsThrowObject { get; private set;}
 
+    public bool IsJumpPressed { get; private set;}
     private void Awake() {
         _inputs = new PlayerInputs();
         _inputs.Movement.Walk.started += OnMovement;
@@ -37,8 +38,7 @@ public class InputManager : MonoBehaviour
     }
     void OnJump(InputAction.CallbackContext context)
     {
-        IsJumping = context.ReadValueAsButton();
-        Debug.Log("Jump pressed" + IsJumping);
+        IsJumpPressed = context.ReadValueAsButton();
     }
 
     void OnTake(InputAction.CallbackContext context)
