@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd4df84c8cb1fdb418102c405afd8d46, type: 3}
-  m_Name: JaxPropiertes
+  m_Name: PlayerOnePropiertes
   m_EditorClassIdentifier: 
-  _speed: 10
+  _speed: 200
+  _currentSpeed: 10
   friction: 15
   maxSpeed: 15
-  _positionObjects: {x: 0, y: 0, z: 0}
-  MAX_PICKUP_OBJECT: 2
+  _throwForce: 20
+  _rotationSpeed: 10
+  _positionObjects: {fileID: 0}
+  MAX_PICKUP_OBJECT: 3
   _canJump: 0
   _pickedObjects: []
   _isTakenObject: 0

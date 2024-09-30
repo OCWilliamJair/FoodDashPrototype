@@ -6,13 +6,15 @@ public class DropObjectState : MonoBehaviour
 {
     InputManager _inputs;
 
+    [SerializeField] PlayersPropiertes _playerPropiertes;
+
     [SerializeField] float _timeToNextDrop;
 
     bool _canDropObject = true;
 
     void DropObject()
     {
-        GameObject obj = PlayerPropiertes._pickedObjects[PlayerPropiertes._pickedObjects.Count - 1];
+        GameObject obj = _playerPropiertes._pickedObjects[_playerPropiertes._pickedObjects.Count - 1];
 
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         IsTakeable _take = obj.GetComponent<IsTakeable>();
@@ -24,12 +26,12 @@ public class DropObjectState : MonoBehaviour
         if (_take != null)
         {
             _take._isTakeable = true;
-            PlayerPropiertes._currentSpeed = PlayerPropiertes._currentSpeed + (PlayerPropiertes._speed * (_take._speedDecrease / 100));
-            Debug.Log(PlayerPropiertes._currentSpeed);
+            _playerPropiertes._currentSpeed = _playerPropiertes._currentSpeed + (_playerPropiertes._speed * (_take._speedDecrease / 100));
+            Debug.Log(_playerPropiertes._currentSpeed);
         }
 
         obj.transform.parent = null;
-        PlayerPropiertes._pickedObjects.RemoveAt(PlayerPropiertes._pickedObjects.Count - 1);
+        _playerPropiertes._pickedObjects.RemoveAt(_playerPropiertes._pickedObjects.Count - 1);
 
         StartCoroutine(TimeToNextDrop());
     }
@@ -47,7 +49,7 @@ public class DropObjectState : MonoBehaviour
 
     private void Update()
     {
-        if (_inputs.IsDropObject && PlayerPropiertes._pickedObjects.Count > 0 && _canDropObject)
+        if (_inputs.IsDropObject && _playerPropiertes._pickedObjects.Count > 0 && _canDropObject)
         {
             DropObject();
         }

@@ -6,14 +6,15 @@ using UnityEngine;
 public class PlayersPropiertes : ScriptableObject
 {
     
-
     [SerializeField] public float _speed = 10;
-    public static float _currentSpeed;
+    public float _currentSpeed;
     [SerializeField] public float friction = 15;
     [SerializeField] public float maxSpeed = 15;
     [SerializeField] public float _throwForce = 20;
+    [SerializeField] public float _rotationSpeed = 10;
 
-    [SerializeField] public Vector3 _positionObjects;
+    [SerializeField] public Transform _positionObjects;
+
     public int MAX_PICKUP_OBJECT = 3;
 
     [SerializeField] public bool _canJump;
