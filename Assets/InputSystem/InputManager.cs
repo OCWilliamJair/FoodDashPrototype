@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     PlayerInputs _inputs;
+    PlayerInput _playerInput;
     public Vector2 MovementDirection{get; private set;}
     public bool IsJumping { get; private set;}
 
@@ -17,6 +18,7 @@ public class InputManager : MonoBehaviour
 
     public bool IsShiftPressed { get; private set;}
     private void Awake() {
+        _playerInput = GetComponent<PlayerInput>();
         _inputs = new PlayerInputs();
         _inputs.Movement.Walk.started += OnMovement;
         _inputs.Movement.Walk.performed += OnMovement;

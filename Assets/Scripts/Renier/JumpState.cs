@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(InputManager))]
@@ -17,6 +18,7 @@ public class JumpState : MonoBehaviour
     Rigidbody _rb;
     GroundCheck groundCheck;
     CustomGravity customGravity;
+    bool IsJumpPressed{get;set;}
     private void Awake() {
         _rb = GetComponent<Rigidbody>();
         _inputs = GetComponent<InputManager>();
@@ -24,6 +26,10 @@ public class JumpState : MonoBehaviour
         customGravity = GetComponent<CustomGravity>();
 
         SetUpJumpVariables();
+    }
+    public void OnJumpPressed(InputAction.CallbackContext context) 
+    {
+        IsJumpPressed = context.ReadValueAsButton();
     }
     private void FixedUpdate() {
         Jump();
@@ -37,17 +43,17 @@ public class JumpState : MonoBehaviour
     }
     void Jump()
     {
-        if(!_isJumping && groundCheck.IsGrounded && _inputs.IsJumpPressed){
+        if(!_isJumping && groundCheck.IsGrounded && IsJumpPressed){
             _isJumping = true;
             _rb.AddForce(Vector3.up * _initialJumpVelocity * 0.5f, ForceMode.Impulse);
-        }else if(_isJumping && groundCheck.IsGrounded && !_inputs.IsJumpPressed)
+        }else if(_isJumping && groundCheck.IsGrounded && !IsJumpPressed)
         {
             _isJumping = false;
         }
     }
     void ApplyCustomGravity()
     {
-        bool isFalling = _rb.velocity.y < 0.0f || !_inputs.IsJumpPressed;
+        bool isFalling = _rb.velocity.y < 0.0f || !IsJumpPressed;
         float fallMultiplier = 2f;
         if(groundCheck.IsGrounded){
             customGravity.GravityScale = 1;
@@ -55,6 +61,7 @@ public class JumpState : MonoBehaviour
         }
         else if(isFalling)
         {
+            customGravity.Gravity = _gravity;
             customGravity.GravityScale = 2;
         }
         else
