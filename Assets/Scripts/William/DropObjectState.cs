@@ -31,6 +31,7 @@ public class DropObjectState : MonoBehaviour
         }
 
         obj.transform.parent = null;
+        obj.transform.localScale = new Vector3(obj.transform.localScale.x * 1.2f, obj.transform.localScale.y * 1.2f, obj.transform.localScale.z * 1.2f);
         _playersPropiertes._pickedObjects.RemoveAt(_playersPropiertes._pickedObjects.Count - 1);
 
         StartCoroutine(TimeToNextDrop());

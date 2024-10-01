@@ -20,8 +20,7 @@ public class ThrowObjectState : MonoBehaviour
 
     [SerializeField] float _timeToNextThrow;
     [SerializeField] public static float _currentThrowForce;
-    [SerializeField] public static float minForce = 1f;
-    [SerializeField] public static float maxForce = 20f;
+    private float minForce = 1f;
     [SerializeField] public float _incrementSpeed = 1.5f;
     [SerializeField] public float _decrementSpeed = 3f;
     [SerializeField] public float throwAngle = 45f;
@@ -44,7 +43,7 @@ public class ThrowObjectState : MonoBehaviour
     private void Awake()
     {
         _inputs = GetComponent<InputManager>();
-        _sliderPlayer.maxValue = maxForce;
+        _sliderPlayer.maxValue = _playersPropiertes._throwForce;
         _sliderPlayer.minValue = minForce;
     }
 
@@ -59,7 +58,7 @@ public class ThrowObjectState : MonoBehaviour
         {
             _currentThrowForce += _incrementSpeed * Time.deltaTime;
 
-            if (_currentThrowForce >= maxForce)
+            if (_currentThrowForce >= _playersPropiertes._throwForce)
             {
                 _inCreasingForce = false;
             }
@@ -85,6 +84,7 @@ public class ThrowObjectState : MonoBehaviour
         {
             rb.isKinematic = false;
             obj.transform.parent = null;
+            obj.transform.localScale = new Vector3(obj.transform.localScale.x * 1.2f, obj.transform.localScale.y * 1.2f, obj.transform.localScale.z * 1.2f);
 
             Vector3 throwDirection = (transform.forward + Vector3.up * Mathf.Tan(throwAngle * Mathf.Deg2Rad)).normalized;
             rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);

@@ -72,6 +72,7 @@ public class TakeObjectState : MonoBehaviour
         obj.transform.position = _playerPropiertes._positionObjects[_currentPosition].transform.position;
         obj.transform.rotation = _playerPropiertes._positionObjects[_currentPosition].transform.rotation;
         obj.transform.parent = _playerPropiertes._positionObjects[_currentPosition];
+        obj.transform.localScale = new Vector3(obj.transform.localScale.x / 1.2f, obj.transform.localScale.y / 1.2f, obj.transform.localScale.z / 1.2f);
        
         StartCoroutine(TimeToNextTake());
     }
