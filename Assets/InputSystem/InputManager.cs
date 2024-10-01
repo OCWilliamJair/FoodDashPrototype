@@ -14,6 +14,8 @@ public class InputManager : MonoBehaviour
     public bool IsThrowObject { get; private set;}
 
     public bool IsJumpPressed { get; private set;}
+
+    public bool IsShiftPressed { get; private set;}
     private void Awake() {
         _inputs = new PlayerInputs();
         _inputs.Movement.Walk.started += OnMovement;
@@ -31,6 +33,9 @@ public class InputManager : MonoBehaviour
 
         _inputs.Movement.Jump.started += OnJump;
         _inputs.Movement.Jump.canceled += OnJump;
+
+        _inputs.Movement.Crouch.started += OnCrouch;
+        _inputs.Movement.Crouch.canceled += OnCrouch;
     }
     void OnMovement(InputAction.CallbackContext context)
     {
@@ -54,6 +59,11 @@ public class InputManager : MonoBehaviour
     void OnThrow(InputAction.CallbackContext context)
     {
         IsThrowObject = context.ReadValueAsButton();
+    }
+
+    void OnCrouch(InputAction.CallbackContext context)
+    {
+        IsShiftPressed = context.ReadValueAsButton();
     }
 
     private void OnEnable() {
