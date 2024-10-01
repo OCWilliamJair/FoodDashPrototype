@@ -14,12 +14,13 @@ public class ThrowObjectState : MonoBehaviour
 
     [SerializeField] public GameObject _canvasSlider;
 
+    [SerializeField] PlayersPropiertes _playersPropiertes;
+
     bool _canThrowObject = true;
 
     [SerializeField] float _timeToNextThrow;
     [SerializeField] public static float _currentThrowForce;
-    [SerializeField] public static float minForce = 1f;
-    [SerializeField] public static float maxForce = 20f;
+    private float minForce = 1f;
     [SerializeField] public float _incrementSpeed = 1.5f;
     [SerializeField] public float _decrementSpeed = 3f;
     [SerializeField] public float throwAngle = 45f;
@@ -28,7 +29,7 @@ public class ThrowObjectState : MonoBehaviour
     private void Update()
     {
 
-        if (_inputs.IsThrowObject && PlayerPropiertes._pickedObjects.Count > 0 && _canThrowObject)
+        if (_inputs.IsThrowObject && _playersPropiertes._pickedObjects.Count > 0 && _canThrowObject)
         {
             ChargingForce();
         }   
@@ -42,7 +43,7 @@ public class ThrowObjectState : MonoBehaviour
     private void Awake()
     {
         _inputs = GetComponent<InputManager>();
-        _sliderPlayer.maxValue = maxForce;
+        _sliderPlayer.maxValue = _playersPropiertes._throwForce;
         _sliderPlayer.minValue = minForce;
     }
 
@@ -57,7 +58,7 @@ public class ThrowObjectState : MonoBehaviour
         {
             _currentThrowForce += _incrementSpeed * Time.deltaTime;
 
-            if (_currentThrowForce >= maxForce)
+            if (_currentThrowForce >= _playersPropiertes._throwForce)
             {
                 _inCreasingForce = false;
             }
@@ -75,7 +76,7 @@ public class ThrowObjectState : MonoBehaviour
 
     void ThrowObject(float throwForce)
     {
-        GameObject obj = PlayerPropiertes._pickedObjects[PlayerPropiertes._pickedObjects.Count - 1];
+        GameObject obj = _playersPropiertes._pickedObjects[_playersPropiertes._pickedObjects.Count - 1];
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         IsTakeable _take = obj.GetComponent<IsTakeable>();
 
@@ -83,6 +84,7 @@ public class ThrowObjectState : MonoBehaviour
         {
             rb.isKinematic = false;
             obj.transform.parent = null;
+            obj.transform.localScale = new Vector3(obj.transform.localScale.x * 1.2f, obj.transform.localScale.y * 1.2f, obj.transform.localScale.z * 1.2f);
 
             Vector3 throwDirection = (transform.forward + Vector3.up * Mathf.Tan(throwAngle * Mathf.Deg2Rad)).normalized;
             rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
@@ -90,12 +92,12 @@ public class ThrowObjectState : MonoBehaviour
         if (_take != null)
         {
             _take._isTakeable = true;
-            PlayerPropiertes._currentSpeed = PlayerPropiertes._currentSpeed + (PlayerPropiertes._speed * (_take._speedDecrease / 100));
-            Debug.Log(PlayerPropiertes._currentSpeed);
+            _playersPropiertes._currentSpeed = _playersPropiertes._currentSpeed + (_playersPropiertes._speed * (_take._speedDecrease / 100));
+            Debug.Log(_playersPropiertes._currentSpeed);
         }
 
         StartCoroutine(_take.TimeToTake());
-        PlayerPropiertes._pickedObjects.RemoveAt(PlayerPropiertes._pickedObjects.Count - 1);
+        _playersPropiertes._pickedObjects.RemoveAt(_playersPropiertes._pickedObjects.Count - 1);
         _isCharging = false;
         _canvasSlider.SetActive(false);
         StartCoroutine(TimeToNextThrow());
