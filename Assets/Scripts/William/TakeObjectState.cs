@@ -10,9 +10,8 @@ public class TakeObjectState : MonoBehaviour
 
     bool _canTakeObject = true;
 
-    PlayerPropiertes _playerPropiertes;
+    [SerializeField] PlayersPropiertes _playerPropiertes;
 
-    [SerializeField] Transform _areaToTakeObject;
     [SerializeField] float _timeToNextTake;
 
     private GameObject _currentObjectColission;
@@ -20,13 +19,12 @@ public class TakeObjectState : MonoBehaviour
     private void Awake()
     {
         _inputs = GetComponent<InputManager>();
-        _playerPropiertes = GetComponent<PlayerPropiertes>();
     }
     private void Update()
     {
         if
         (_inputs.IsTakenObject
-         && PlayerPropiertes._pickedObjects.Count < _playerPropiertes.MAX_PICKUP_OBJECT
+         && _playerPropiertes._pickedObjects.Count < _playerPropiertes.MAX_PICKUP_OBJECT
          && _currentObjectColission != null
          && _currentObjectColission.GetComponent <IsTakeable>()._isTakeable   
          && _canTakeObject
@@ -54,7 +52,9 @@ public class TakeObjectState : MonoBehaviour
 
     void TakeObject(GameObject obj)
     {
-        PlayerPropiertes._pickedObjects.Add(obj);
+        _playerPropiertes._pickedObjects.Add(obj);
+
+        int _currentPosition = _playerPropiertes._pickedObjects.Count;
 
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         IsTakeable _take = obj.GetComponent<IsTakeable>();
@@ -62,19 +62,17 @@ public class TakeObjectState : MonoBehaviour
         if (rb != null)
         {
             rb.isKinematic = true;
+
         }
         if (_take != null)
         {
             _take._isTakeable = false;
-            PlayerPropiertes._currentSpeed = PlayerPropiertes._currentSpeed - (PlayerPropiertes._speed * (_take._speedDecrease / 100));
-            Debug.Log(PlayerPropiertes._currentSpeed);
+            _playerPropiertes._currentSpeed = _playerPropiertes._currentSpeed - (_playerPropiertes._speed * (_take._speedDecrease / 100));
         }
-        obj.transform.position = _playerPropiertes._positionObjects.position + new Vector3(0, PlayerPropiertes._pickedObjects.Count * 0.5f, 0);
-        obj.transform.rotation = _playerPropiertes._positionObjects.rotation;
-        obj.transform.parent = _playerPropiertes._positionObjects;
-
-        
-
+        obj.transform.position = _playerPropiertes._positionObjects[_currentPosition].transform.position;
+        obj.transform.rotation = _playerPropiertes._positionObjects[_currentPosition].transform.rotation;
+        obj.transform.parent = _playerPropiertes._positionObjects[_currentPosition];
+       
         StartCoroutine(TimeToNextTake());
     }
     
