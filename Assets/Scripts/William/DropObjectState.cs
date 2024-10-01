@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DropObjectState : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class DropObjectState : MonoBehaviour
     [SerializeField] PlayersPropiertes _playersPropiertes;
 
     bool _canDropObject = true;
+
+    bool DropObjectValue { get; set; }
+
+    public void OnDropObject(InputAction.CallbackContext context)
+    {
+        DropObjectValue = context.ReadValueAsButton();
+    }
 
     void DropObject()
     {
@@ -50,7 +58,7 @@ public class DropObjectState : MonoBehaviour
 
     private void Update()
     {
-        if (_inputs.IsDropObject && _playersPropiertes._pickedObjects.Count > 0 && _canDropObject)
+        if (DropObjectValue && _playersPropiertes._pickedObjects.Count > 0 && _canDropObject)
         {
             DropObject();
         }
