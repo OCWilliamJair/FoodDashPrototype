@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof (CapsuleCollider))]
@@ -13,6 +14,13 @@ public class WalkState : MonoBehaviour
     [SerializeField] float _rotationSpeed = 10;
     GroundCheck groundCheck;
     [SerializeField] float _velocityToWalkAgain = 0.5f;
+    Vector2 MovementDirection{get; set;}
+
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        MovementDirection = context.ReadValue<Vector2>();
+    }
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
@@ -26,7 +34,7 @@ public class WalkState : MonoBehaviour
     }
     void Move()
     {
-        _currentDirection = new Vector3(_inputs.MovementDirection.x,0,_inputs.MovementDirection.y);
+        _currentDirection = new Vector3(MovementDirection.x,0, MovementDirection.y);
         if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= maxSpeed && groundCheck.IsGrounded)
         {
             rb.AddForce( CameraRelativeDirection() * _speed, ForceMode.Force);
@@ -42,13 +50,13 @@ public class WalkState : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        Vector3 directionToMove = (forward * _inputs.MovementDirection.y) + (right * _inputs.MovementDirection.x);
+        Vector3 directionToMove = (forward * MovementDirection.y) + (right * MovementDirection.x);
         
         return directionToMove;
     }
     void RotateCharacter()
     {
-        if (_inputs.MovementDirection.magnitude > 0.1)
+        if (MovementDirection.magnitude > 0.1)
         {
             Quaternion tarbetRotation = Quaternion.LookRotation(CameraRelativeDirection());
 
