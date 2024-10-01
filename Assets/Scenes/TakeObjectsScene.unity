@@ -3867,19 +3867,19 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7719821810016896345}
+  - component: {fileID: 6493794435769722264}
+  - component: {fileID: 8968468713207118742}
   - component: {fileID: 8968468713207118741}
+  - component: {fileID: 8968468713207118746}
   - component: {fileID: 1281708370072259764}
   - component: {fileID: 8480913744819213452}
-  - component: {fileID: 6493794435769722264}
   - component: {fileID: 2757155597806200377}
   - component: {fileID: 3371724301818561190}
   - component: {fileID: 3057932514657498384}
   - component: {fileID: 2787680955091630575}
-  - component: {fileID: 8968468713207118746}
   - component: {fileID: 8968468713207118745}
   - component: {fileID: 8968468713207118744}
   - component: {fileID: 8968468713207118743}
-  - component: {fileID: 8968468713207118742}
   m_Layer: 0
   m_Name: Jax
   m_TagString: Untagged
