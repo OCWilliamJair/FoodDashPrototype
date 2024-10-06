@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(InputManager))]
 public class JumpState : MonoBehaviour
 {
+    private float jumpBufferTimer;
+    private bool jumpBuffered;
+    public float jumpBufferTime = 0.2f;
     float _gravity;
     private float _initialJumpVelocity;
     bool _isJumping;
@@ -43,12 +46,24 @@ public class JumpState : MonoBehaviour
     }
     void Jump()
     {
+
         if(!_isJumping && groundCheck.IsGrounded && IsJumpPressed){
             _isJumping = true;
             _rb.AddForce(Vector3.up * _initialJumpVelocity * 0.5f, ForceMode.Impulse);
+
         }else if(_isJumping && groundCheck.IsGrounded && !IsJumpPressed)
         {
             _isJumping = false;
+        }
+
+        if (jumpBuffered)
+        {
+            jumpBufferTimer -= Time.deltaTime;
+
+            if (jumpBufferTimer <= 0)
+            {
+                jumpBuffered = false;
+            }
         }
     }
     void ApplyCustomGravity()
