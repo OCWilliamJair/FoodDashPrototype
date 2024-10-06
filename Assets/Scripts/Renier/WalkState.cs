@@ -15,6 +15,7 @@ public class WalkState : MonoBehaviour
     GroundCheck groundCheck;
     [SerializeField] float _velocityToWalkAgain = 0.5f;
     Vector2 MovementDirection{get; set;}
+    [SerializeField] bool _canMoveJumping;
 
 
     public void OnMove(InputAction.CallbackContext context)
@@ -35,7 +36,7 @@ public class WalkState : MonoBehaviour
     void Move()
     {
         _currentDirection = new Vector3(MovementDirection.x,0, MovementDirection.y);
-        if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= maxSpeed && groundCheck.IsGrounded)
+        if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= maxSpeed && (groundCheck.IsGrounded || _canMoveJumping))
         {
             rb.AddForce( CameraRelativeDirection() * _speed, ForceMode.Force);
         }
