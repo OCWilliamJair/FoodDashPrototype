@@ -270,6 +270,11 @@ GameObject:
   - component: {fileID: 17157652735212848}
   - component: {fileID: 7822878080153908737}
   - component: {fileID: -3941223083487032624}
+  - component: {fileID: 8998217480834984488}
+  - component: {fileID: 6826741828336756427}
+  - component: {fileID: -9086247420491400219}
+  - component: {fileID: 4439592319834926657}
+  - component: {fileID: -77397233031409204}
   m_Layer: 0
   m_Name: Max
   m_TagString: Untagged
@@ -291,7 +296,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5596366114073501086}
-  - {fileID: 7008610809298364063}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1449891420629049827
@@ -345,10 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bc01a4561862942a5b5b1343cdbdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  maxSpeed: 10
   _rotationSpeed: 10
-  _velocityToWalkAgain: 5
+  _canMoveJumping: 0
 --- !u!136 &4080260984334110792
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -524,37 +526,93 @@ MonoBehaviour:
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1 &8462176518094740756
-GameObject:
+--- !u!114 &8998217480834984488
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7008610809298364063}
-  m_Layer: 0
-  m_Name: FollowTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7008610809298364063
-Transform:
+  m_GameObject: {fileID: 6037901880589360670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6eea0c68b1f214d8bd1fa98485e700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToNextDrop: 0
+  _playersPropiertes: {fileID: 0}
+--- !u!114 &6826741828336756427
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8462176518094740756}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4576106236888444311}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 6037901880589360670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9830fb1ed1b47cb4789b533d0a48fdca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentTypeObject: 2
+  _speedDecrease: 0
+  _nameObject: 
+  _massObject: 0
+  _timeToTakeAgain: 0
+  _isTakeable: 0
+--- !u!114 &-9086247420491400219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037901880589360670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4df84c8cb1fdb418102c405afd8d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 10
+  friction: 15
+  maxSpeed: 15
+  _throwForce: 20
+  _positionObjects: []
+  MAX_PICKUP_OBJECT: 3
+  _canJump: 0
+  _pickedObjects: []
+  _isTakenObject: 0
+  _rangeQueve: 0
+--- !u!114 &4439592319834926657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037901880589360670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fb35fcdbccfe7449847bf953c4d945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPropiertes: {fileID: 0}
+  _timeToNextTake: 0
+--- !u!114 &-77397233031409204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037901880589360670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e167d316ed85c6f4ea4a3f89f81ff2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sliderPlayer: {fileID: 0}
+  _canvasSlider: {fileID: 0}
+  _playersPropiertes: {fileID: 0}
+  _timeToNextThrow: 0
+  _incrementSpeed: 1.5
+  _decrementSpeed: 3
+  throwAngle: 45
 --- !u!1 &9068812901088980361
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,20 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof (CapsuleCollider))]
 [RequireComponent(typeof(GroundCheck))]
+[RequireComponent(typeof(CustomGravity))]
+[RequireComponent(typeof(PlayersPropiertes))]
 public class WalkState : MonoBehaviour
 {
-    Rigidbody rb;
-    InputManager _inputs;
+    public Vector2 MovementDirection{get; private set;}
     Vector3 _currentDirection;
-    [SerializeField] float _speed = 10;
-    [SerializeField] float maxSpeed = 15;
-    [SerializeField] float _rotationSpeed = 10;
+    Rigidbody rb;
     GroundCheck groundCheck;
-    [SerializeField] float _velocityToWalkAgain = 0.5f;
-    Vector2 MovementDirection{get; set;}
+    PlayersPropiertes _pp;
+    [SerializeField] float _rotationSpeed = 10;
     [SerializeField] bool _canMoveJumping;
 
 
@@ -26,8 +24,8 @@ public class WalkState : MonoBehaviour
     private void Start() {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        _inputs = GetComponent<InputManager>();
         groundCheck = GetComponent<GroundCheck>();
+        _pp = GetComponent<PlayersPropiertes>();
     }
     private void Update() {
         Move();
@@ -36,9 +34,9 @@ public class WalkState : MonoBehaviour
     void Move()
     {
         _currentDirection = new Vector3(MovementDirection.x,0, MovementDirection.y);
-        if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= maxSpeed && (groundCheck.IsGrounded || _canMoveJumping))
+        if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= _pp.maxSpeed && (groundCheck.IsGrounded || _canMoveJumping))
         {
-            rb.AddForce( CameraRelativeDirection() * _speed, ForceMode.Force);
+            rb.AddForce( CameraRelativeDirection() * _pp._speed, ForceMode.Force);
         }
     }
     Vector3 CameraRelativeDirection()
