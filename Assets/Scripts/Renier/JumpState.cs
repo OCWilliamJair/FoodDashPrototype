@@ -1,3 +1,4 @@
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -21,6 +22,8 @@ public class JumpState : MonoBehaviour
     Rigidbody _rb;
     GroundCheck groundCheck;
     CustomGravity customGravity;
+    [SerializeField] float _fallMultiplier = 2f;
+    [SerializeField] bool _applyStrongFall;
     bool IsJumpPressed{get;set;}
     private void Awake() {
         _rb = GetComponent<Rigidbody>();
@@ -55,29 +58,23 @@ public class JumpState : MonoBehaviour
         {
             _isJumping = false;
         }
-
-        if (jumpBuffered)
-        {
-            jumpBufferTimer -= Time.deltaTime;
-
-            if (jumpBufferTimer <= 0)
-            {
-                jumpBuffered = false;
-            }
-        }
     }
     void ApplyCustomGravity()
     {
         bool isFalling = _rb.velocity.y < 0.0f || !IsJumpPressed;
-        float fallMultiplier = 2f;
         if(groundCheck.IsGrounded){
             customGravity.GravityScale = 1;
             customGravity.Gravity = _groundGravity;
         }
         else if(isFalling)
         {
-            customGravity.Gravity = _gravity;
-            customGravity.GravityScale = 2;
+            if(_applyStrongFall)
+            {
+                _rb.AddForce(Vector3.down * _fallMultiplier, ForceMode.Impulse);
+            }else{
+                customGravity.Gravity = _gravity;
+                customGravity.GravityScale = _fallMultiplier;
+            }
         }
         else
         {

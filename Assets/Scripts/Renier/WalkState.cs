@@ -36,12 +36,7 @@ public class WalkState : MonoBehaviour
         _currentDirection = new Vector3(MovementDirection.x,0, MovementDirection.y);
         if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= _pp.maxSpeed && (groundCheck.IsGrounded || _canMoveJumping))
         {
-            rb.AddForce( CameraRelativeDirection() * _pp._speed, ForceMode.Force);
-        }
-
-        if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= maxSpeed && !groundCheck.IsGrounded)
-        {
-            rb.AddForce(CameraRelativeDirection() * (_speed * 1.2f), ForceMode.Force);
+            rb.AddForce( CameraRelativeDirection() * _pp._currentSpeed, ForceMode.Force);
         }
     }
     Vector3 CameraRelativeDirection()

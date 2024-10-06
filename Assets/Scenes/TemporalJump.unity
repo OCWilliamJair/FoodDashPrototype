@@ -266,7 +266,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -407,7 +407,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717725944}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8a49f55737fdbe34db08fcf0e93f0b64, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -763,7 +763,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   radius: 0.44
-  offset: {x: 0, y: 0.58, z: 0}
+  offset: {x: 0, y: 0.64, z: 0}
 --- !u!33 &3468192576393989307
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -819,6 +819,9 @@ GameObject:
   - component: {fileID: 2249046960286584334}
   - component: {fileID: 6293417560577301085}
   - component: {fileID: 7773893047884523825}
+  - component: {fileID: 7773893047884523828}
+  - component: {fileID: 7773893047884523827}
+  - component: {fileID: 7773893047884523826}
   m_Layer: 0
   m_Name: Jax
   m_TagString: Untagged
@@ -931,8 +934,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7773893047884523825}
-        m_TargetAssemblyTypeName: TemporalJump, Assembly-CSharp
+      - m_Target: {fileID: 7773893047884523826}
+        m_TargetAssemblyTypeName: WalkState, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -946,35 +949,11 @@ MonoBehaviour:
     m_ActionId: 542eb5b0-df6b-4b9c-b020-0fc288476f24
     m_ActionName: Movement/Walk[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7773893047884523825}
-        m_TargetAssemblyTypeName: TemporalJump, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 26ea5ecc-2e95-42b0-88e5-2ffa3114f020
     m_ActionName: Movement/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CrouchState, Assembly-CSharp
-        m_MethodName: OnCrouch
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 1b2a458a-f1a2-4e84-835e-130d7b135d0c
     m_ActionName: Movement/Crouch[/Keyboard/shift]
   - m_PersistentCalls:
@@ -1072,10 +1051,59 @@ MonoBehaviour:
     m_Bits: 8
   groundCheckRadius: 0.5
   jumpForceInitial: 5
-  jumpForceHold: 10
+  jumpForceHold: 3
   maxJumpHoldTime: 0.2
   extraGravity: 10
   jumpBufferTime: 0.2
+--- !u!114 &7773893047884523826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003280455043836025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bc01a4561862942a5b5b1343cdbdae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 10
+  _canMoveJumping: 1
+--- !u!114 &7773893047884523827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003280455043836025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4df84c8cb1fdb418102c405afd8d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 100
+  friction: 15
+  maxSpeed: 15
+  _throwForce: 20
+  _positionObjects: []
+  MAX_PICKUP_OBJECT: 3
+  _canJump: 0
+  _pickedObjects: []
+  _isTakenObject: 0
+  _rangeQueve: 0
+--- !u!114 &7773893047884523828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003280455043836025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5444d8b35018f2e46a70fe0768202815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravityScale: 1
 --- !u!4 &8105839841555502218
 Transform:
   m_ObjectHideFlags: 0
