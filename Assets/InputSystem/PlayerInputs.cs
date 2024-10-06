@@ -53,64 +53,36 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TakeObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4e79ab0-cb16-4cc3-b6aa-dac937b83f62"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DropObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5d3d13e-2911-4bd7-a613-938842ce5983"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec238f5e-1038-4a47-a946-8e79784feadd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""4e8f0ea5-be81-4106-8718-f82b5359a971"",
-                    ""path"": ""2DVector(mode=2)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Up"",
-                    ""id"": ""d4bd2e84-aebc-4718-a4d4-26f868f62d53"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Down"",
-                    ""id"": ""335e549c-4412-4cd0-98de-df6d0a806375"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Left"",
-                    ""id"": ""c0cf1b2c-453b-4271-bcab-d37706561c01"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Right"",
-                    ""id"": ""150d8219-d865-47d8-b700-636757182957"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": ""Gamepad"",
                     ""id"": ""ae48f1c5-501d-4ecb-9d96-31303d6c78ef"",
@@ -167,15 +139,59 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""84d2fba9-833f-42b7-97e1-ab8845ddb02f"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""29fa8eaa-cb06-4b06-8cd1-09cd58ecec7f"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0479c972-8b8f-4d67-b08e-399ea1ea0180"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerOne"",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""428be983-9ceb-4710-9b62-8b0fb2f49d30"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerOne"",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7f4475db-1261-4818-ace1-b4bd471f07b6"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerOne"",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ffd35535-93fc-4ada-8da1-937a4786bf63"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerOne"",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -190,12 +206,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""54d5768d-b53f-4d39-8182-fb3fcfcb8b4d"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""id"": ""d95c4f43-7c3f-4912-92a7-f13bcb03ba38"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Crouch"",
+                    ""groups"": ""PlayerOne"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -207,6 +223,83 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""PlayerTwo"",
                     ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c17e226-3a13-453b-9a06-b0f788c39d17"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerOne"",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e957172e-6c22-42b5-87e9-d06c2b1c2219"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerTwo"",
+                    ""action"": ""TakeObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fba89d55-231f-4d43-80f3-22aa39ebe504"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerOne"",
+                    ""action"": ""TakeObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4489e446-f8e6-4ff3-a9a4-f5ee20bcacb2"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerTwo"",
+                    ""action"": ""DropObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""021ce18a-94ac-4bd2-81be-29201d02c8c6"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerOne"",
+                    ""action"": ""DropObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0407104f-f9a3-4aa2-941c-85590148c9cd"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerOne"",
+                    ""action"": ""ThrowObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4da4ab6e-4b91-4347-a305-a37a00854da2"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerTwo"",
+                    ""action"": ""ThrowObject"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -344,6 +437,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Movement_Walk = m_Movement.FindAction("Walk", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
+        m_Movement_TakeObject = m_Movement.FindAction("TakeObject", throwIfNotFound: true);
+        m_Movement_DropObject = m_Movement.FindAction("DropObject", throwIfNotFound: true);
+        m_Movement_ThrowObject = m_Movement.FindAction("ThrowObject", throwIfNotFound: true);
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_TakeObject = m_Actions.FindAction("TakeObject", throwIfNotFound: true);
@@ -413,6 +509,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Walk;
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_Crouch;
+    private readonly InputAction m_Movement_TakeObject;
+    private readonly InputAction m_Movement_DropObject;
+    private readonly InputAction m_Movement_ThrowObject;
     public struct MovementActions
     {
         private @PlayerInputs m_Wrapper;
@@ -420,6 +519,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @Walk => m_Wrapper.m_Movement_Walk;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
+        public InputAction @TakeObject => m_Wrapper.m_Movement_TakeObject;
+        public InputAction @DropObject => m_Wrapper.m_Movement_DropObject;
+        public InputAction @ThrowObject => m_Wrapper.m_Movement_ThrowObject;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -438,6 +540,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @TakeObject.started += instance.OnTakeObject;
+            @TakeObject.performed += instance.OnTakeObject;
+            @TakeObject.canceled += instance.OnTakeObject;
+            @DropObject.started += instance.OnDropObject;
+            @DropObject.performed += instance.OnDropObject;
+            @DropObject.canceled += instance.OnDropObject;
+            @ThrowObject.started += instance.OnThrowObject;
+            @ThrowObject.performed += instance.OnThrowObject;
+            @ThrowObject.canceled += instance.OnThrowObject;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -451,6 +562,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @TakeObject.started -= instance.OnTakeObject;
+            @TakeObject.performed -= instance.OnTakeObject;
+            @TakeObject.canceled -= instance.OnTakeObject;
+            @DropObject.started -= instance.OnDropObject;
+            @DropObject.performed -= instance.OnDropObject;
+            @DropObject.canceled -= instance.OnDropObject;
+            @ThrowObject.started -= instance.OnThrowObject;
+            @ThrowObject.performed -= instance.OnThrowObject;
+            @ThrowObject.canceled -= instance.OnThrowObject;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -553,6 +673,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnWalk(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnTakeObject(InputAction.CallbackContext context);
+        void OnDropObject(InputAction.CallbackContext context);
+        void OnThrowObject(InputAction.CallbackContext context);
     }
     public interface IActionsActions
     {

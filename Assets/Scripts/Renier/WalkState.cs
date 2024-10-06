@@ -40,6 +40,11 @@ public class WalkState : MonoBehaviour
         {
             rb.AddForce( CameraRelativeDirection() * _speed, ForceMode.Force);
         }
+
+        if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= maxSpeed && !groundCheck.IsGrounded)
+        {
+            rb.AddForce(CameraRelativeDirection() * (_speed * 1.2f), ForceMode.Force);
+        }
     }
     Vector3 CameraRelativeDirection()
     {
