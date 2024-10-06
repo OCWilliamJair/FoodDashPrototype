@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.iOS;
 using UnityEngine.Windows;
 
@@ -16,14 +17,21 @@ public class TakeObjectState : MonoBehaviour
 
     private GameObject _currentObjectColission;
 
+    bool TakeObjectValue { get; set; }
+
     private void Awake()
     {
         _inputs = GetComponent<InputManager>();
     }
+
+    public void OnTakeObject(InputAction.CallbackContext context)
+    {
+        TakeObjectValue = context.ReadValueAsButton();
+    }
     private void Update()
     {
         if
-        (_inputs.IsTakenObject
+        (TakeObjectValue
          && _playerPropiertes._pickedObjects.Count < _playerPropiertes.MAX_PICKUP_OBJECT
          && _currentObjectColission != null
          && _currentObjectColission.GetComponent <IsTakeable>()._isTakeable   

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 
@@ -26,14 +27,21 @@ public class ThrowObjectState : MonoBehaviour
     [SerializeField] public float throwAngle = 45f;
     private bool _inCreasingForce;
     private bool _isCharging = false;
+
+    bool ThrowObjectValue { get; set; }
+
+    public void OnThrowObject(InputAction.CallbackContext context)
+    {
+        ThrowObjectValue = context.ReadValueAsButton();
+    }
     private void Update()
     {
 
-        if (_inputs.IsThrowObject && _playersPropiertes._pickedObjects.Count > 0 && _canThrowObject)
+        if (ThrowObjectValue && _playersPropiertes._pickedObjects.Count > 0 && _canThrowObject)
         {
             ChargingForce();
         }   
-        else if(!_inputs.IsThrowObject && _isCharging)
+        else if(!ThrowObjectValue && _isCharging)
         {
             ThrowObject(_currentThrowForce);
             _currentThrowForce = minForce;
