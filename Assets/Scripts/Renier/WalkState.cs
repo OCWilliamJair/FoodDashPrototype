@@ -27,14 +27,14 @@ public class WalkState : MonoBehaviour
         groundCheck = GetComponent<GroundCheck>();
         _pp = GetComponent<PlayersPropiertes>();
     }
-    private void Update() {
+    private void FixedUpdate() {
         Move();
         RotateCharacter();
     }
     void Move()
     {
         _currentDirection = new Vector3(MovementDirection.x,0, MovementDirection.y);
-        if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= _pp.maxSpeed && (groundCheck.IsGrounded || _canMoveJumping))
+        if(_currentDirection.magnitude >= 0.1 && rb.velocity.magnitude <= _pp._speed && (groundCheck.IsGrounded || _canMoveJumping))
         {
             rb.AddForce( CameraRelativeDirection() * _pp._currentSpeed, ForceMode.Force);
         }
